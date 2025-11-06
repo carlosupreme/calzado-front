@@ -3,6 +3,7 @@ import { API_ENDPOINTS } from '@/config/api';
 import type {
   DashboardSummary,
   TiendaResumen,
+  EmpleadoPerformance,
   TiendaDetalle,
   HistoricoResponse,
   PeriodParams,
@@ -27,6 +28,17 @@ export const dashboardService = {
   async getTiendas(params?: PeriodParams): Promise<TiendaResumen[]> {
     const response = await apiClient.get<TiendaResumen[]>(
       API_ENDPOINTS.DASHBOARD.TIENDAS,
+      { params }
+    );
+    return response.data;
+  },
+
+  /**
+   * Get list of all employees with summary data
+   */
+  async getEmpleados(params?: PeriodParams): Promise<EmpleadoPerformance[]> {
+    const response = await apiClient.get<EmpleadoPerformance[]>(
+      API_ENDPOINTS.DASHBOARD.EMPLEADOS,
       { params }
     );
     return response.data;

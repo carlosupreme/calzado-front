@@ -20,6 +20,28 @@ export const TiendaResumenSchema = z.object({
   status: z.enum(['CRÍTICO', 'ÓPTIMO', 'SOBREINVENTARIO', 'SIN VENTAS']),
 });
 
+export const EmpleadoResumenSchema = z.object({
+  empleado: z.string(),
+  inventario: z.number(),
+  ventas: z.number(),
+  cobertura: z.number(),
+  status: z.enum(['CRÍTICO', 'ÓPTIMO', 'SOBREINVENTARIO', 'SIN VENTAS']),
+});
+
+export const EmpleadoPerformanceSchema = z.object({
+  empleado: z.string(),
+  tienda: z.string(),
+  ventas_totales: z.number(),
+  num_ventas: z.number(),
+  ticket_promedio: z.number(),
+  comision: z.number(),
+  satisfaccion_cliente: z.number(), // 0-5 rating
+  tasa_conversion: z.number(), // percentage
+  unidades_vendidas: z.number(),
+  devoluciones: z.number(),
+  ranking: z.number(),
+});
+
 export const UnidadDetalleSchema = z.object({
   unidad: z.string(),
   inventario: z.number(),
@@ -52,6 +74,8 @@ export const HistoricoResponseSchema = z.object({
 // TypeScript types inferred from schemas
 export type DashboardSummary = z.infer<typeof DashboardSummarySchema>;
 export type TiendaResumen = z.infer<typeof TiendaResumenSchema>;
+export type EmpleadoResumen = z.infer<typeof EmpleadoResumenSchema>;
+export type EmpleadoPerformance = z.infer<typeof EmpleadoPerformanceSchema>;
 export type UnidadDetalle = z.infer<typeof UnidadDetalleSchema>;
 export type TiendaDetalle = z.infer<typeof TiendaDetalleSchema>;
 export type DatoHistorico = z.infer<typeof DatoHistoricoSchema>;

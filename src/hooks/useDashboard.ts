@@ -3,6 +3,7 @@ import { dashboardService } from '@/api/services/dashboard';
 import type {
   DashboardSummary,
   TiendaResumen,
+  EmpleadoPerformance,
   TiendaDetalle,
   HistoricoResponse,
   PeriodParams,
@@ -27,6 +28,17 @@ export function useTiendas(params?: PeriodParams): UseQueryResult<TiendaResumen[
   return useQuery({
     queryKey: ['dashboard', 'tiendas', params],
     queryFn: () => dashboardService.getTiendas(params),
+    staleTime: 5 * 60 * 1000,
+  });
+}
+
+/**
+ * Hook to fetch all employees list
+ */
+export function useEmpleados(params?: PeriodParams): UseQueryResult<EmpleadoPerformance[]> {
+  return useQuery({
+    queryKey: ['dashboard', 'empleados', params],
+    queryFn: () => dashboardService.getEmpleados(params),
     staleTime: 5 * 60 * 1000,
   });
 }

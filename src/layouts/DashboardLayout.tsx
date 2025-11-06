@@ -6,6 +6,8 @@ const navigation = [
   { name: 'Tiendas', href: '/tiendas', icon: 'store' },
   { name: 'Histórico', href: '/historico', icon: 'chart' },
   { name: 'Chat', href: '/chat', icon: 'chat' },
+  { name: 'Empleados', href: '/empleados', icon: 'user' },
+  { name: 'Organizacion', href: '/org', icon: 'users' },
 ];
 
 export function DashboardLayout() {

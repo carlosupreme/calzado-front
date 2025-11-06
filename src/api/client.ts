@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { API_BASE_URL } from '@/config/api';
+import { generateMockEmpleadosPerformance } from '@/lib/mockData';
 
 export const apiClient = axios.create({
   baseURL: API_BASE_URL,
@@ -12,6 +13,20 @@ export const apiClient = axios.create({
 // Request interceptor
 apiClient.interceptors.request.use(
   (config) => {
+    // Intercept empleados endpoint and return mock data
+    if (config.url?.includes('/api/dashboard/empleados')) {
+      // Cancel the request and handle it with mock data
+      config.adapter = () => {
+        return Promise.resolve({
+          data: generateMockEmpleadosPerformance(),
+          status: 200,
+          statusText: 'OK',
+          headers: {},
+          config,
+        });
+      };
+    }
+    
     // Add any auth tokens here if needed in the future
     // const token = localStorage.getItem('token');
     // if (token) {

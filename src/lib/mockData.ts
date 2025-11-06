@@ -1,4 +1,4 @@
-import type { TiendaResumen } from '@/types/dashboard';
+import type { TiendaResumen, EmpleadoResumen, EmpleadoPerformance } from '@/types/dashboard';
 
 // Generate mock data based on real data patterns
 export function generateTrendData(currentValue: number): {
@@ -226,4 +226,146 @@ export function generateMonthOverMonthComparison() {
       crecimientoVentas: parseFloat(((Math.random() * 20 - 10)).toFixed(1)),
     };
   });
+}
+
+export function generateMockEmpleados(): EmpleadoResumen[] {
+  const nombres = [
+    'Juan Pérez',
+    'María García',
+    'Carlos López',
+    'Ana Martínez',
+    'Luis Rodríguez',
+    'Carmen Hernández',
+    'José González',
+    'Laura Sánchez',
+    'Miguel Ramírez',
+    'Isabel Torres',
+    'Francisco Flores',
+    'Patricia Morales',
+    'Antonio Jiménez',
+    'Rosa Ruiz',
+    'Manuel Castro',
+  ];
+
+  return nombres.map((nombre) => {
+    const ventas = Math.floor(Math.random() * 8000 + 2000);
+    const inventario = Math.floor(Math.random() * 12000 + 3000);
+    const cobertura = ventas > 0 ? (inventario / ventas) * 30 : 0;
+
+    // Determine status based on coverage
+    let status: 'CRÍTICO' | 'ÓPTIMO' | 'SOBREINVENTARIO' | 'SIN VENTAS';
+    if (ventas === 0) {
+      status = 'SIN VENTAS';
+    } else if (cobertura < 28) {
+      status = 'CRÍTICO';
+    } else if (cobertura > 90) {
+      status = 'SOBREINVENTARIO';
+    } else {
+      status = 'ÓPTIMO';
+    }
+
+    return {
+      empleado: nombre,
+      inventario,
+      ventas,
+      cobertura: parseFloat(cobertura.toFixed(1)),
+      status,
+    };
+  });
+}
+
+export function generateMockEmpleadosPerformance(): EmpleadoPerformance[] {
+  const nombres = [
+    'Juan Pérez',
+    'María García',
+    'Carlos López',
+    'Ana Martínez',
+    'Luis Rodríguez',
+    'Carmen Hernández',
+    'José González',
+    'Laura Sánchez',
+    'Miguel Ramírez',
+    'Isabel Torres',
+    'Francisco Flores',
+    'Patricia Morales',
+    'Antonio Jiménez',
+    'Rosa Ruiz',
+    'Manuel Castro',
+    'Diego Moreno',
+    'Sofia Vargas',
+    'Roberto Mendoza',
+    'Claudia Reyes',
+    'Fernando Silva',
+  ];
+
+  const tiendas = ['Tienda 1', 'Tienda 10', 'Tienda 12', 'Tienda 5', 'Tienda 2'];
+
+  const empleados = nombres.map((nombre, index) => {
+    const num_ventas = Math.floor(Math.random() * 80 + 20); // 20-100 sales
+    const ticket_promedio = Math.floor(Math.random() * 800 + 400); // $400-$1200
+    const ventas_totales = num_ventas * ticket_promedio;
+    const comision = ventas_totales * 0.03; // 3% commission
+    const satisfaccion_cliente = parseFloat((Math.random() * 1.5 + 3.5).toFixed(1)); // 3.5-5.0
+    const tasa_conversion = parseFloat((Math.random() * 30 + 15).toFixed(1)); // 15-45%
+    const unidades_vendidas = Math.floor(num_ventas * (Math.random() * 1.5 + 1)); // 1-2.5 units per sale
+    const devoluciones = Math.floor(num_ventas * (Math.random() * 0.1)); // 0-10% returns
+
+    return {
+      empleado: nombre,
+      tienda: tiendas[index % tiendas.length],
+      ventas_totales,
+      num_ventas,
+      ticket_promedio,
+      comision: Math.floor(comision),
+      satisfaccion_cliente,
+      tasa_conversion,
+      unidades_vendidas,
+      devoluciones,
+      ranking: 0, // Will be calculated after sorting
+    };
+  });
+
+  // Sort by sales and assign ranking
+  empleados.sort((a, b) => b.ventas_totales - a.ventas_totales);
+  empleados.forEach((emp, index) => {
+    emp.ranking = index + 1;
+  });
+
+  return empleados;
+}
+
+export function generateEmpleadosSalesOverTime() {
+  const months = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun'];
+  const topEmpleados = ['Juan Pérez', 'María García', 'Carlos López', 'Ana Martínez', 'Luis Rodríguez'];
+
+  return months.map((mes) => {
+    const dataPoint: Record<string, string | number> = { mes };
+    
+    topEmpleados.forEach((emp) => {
+      dataPoint[emp] = Math.floor(Math.random() * 30000 + 40000); // $40k-$70k
+    });
+
+    return dataPoint;
+  });
+}
+
+export function generateEmpleadosMetrics() {
+  const empleados = generateMockEmpleadosPerformance();
+  
+  const totalVentas = empleados.reduce((sum, emp) => sum + emp.ventas_totales, 0);
+  const totalComisiones = empleados.reduce((sum, emp) => sum + emp.comision, 0);
+  const avgTicket = empleados.reduce((sum, emp) => sum + emp.ticket_promedio, 0) / empleados.length;
+  const avgConversion = empleados.reduce((sum, emp) => sum + emp.tasa_conversion, 0) / empleados.length;
+  const avgSatisfaccion = empleados.reduce((sum, emp) => sum + emp.satisfaccion_cliente, 0) / empleados.length;
+  const totalUnidades = empleados.reduce((sum, emp) => sum + emp.unidades_vendidas, 0);
+
+  return {
+    total_empleados: empleados.length,
+    ventas_totales: totalVentas,
+    comisiones_totales: Math.floor(totalComisiones),
+    ticket_promedio: Math.floor(avgTicket),
+    tasa_conversion_promedio: parseFloat(avgConversion.toFixed(1)),
+    satisfaccion_promedio: parseFloat(avgSatisfaccion.toFixed(1)),
+    unidades_vendidas: totalUnidades,
+  };
 }
