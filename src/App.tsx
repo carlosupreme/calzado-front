@@ -7,6 +7,7 @@ import { TiendaDetailPage } from '@/pages/TiendaDetailPage';
 import { HistoricoPage } from '@/pages/HistoricoPage';
 import { ChatPage } from '@/pages/ChatPage';
 import { EmpleadosPage } from '@/pages/EmpleadosPage';
+import { OrganizationPage } from '@/pages/OrganizationPage';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -29,6 +30,7 @@ function App() {
             <Route path="/historico" element={<HistoricoPage />} />
             <Route path="/chat" element={<ChatPage />} />
             <Route path="/empleados" element={<EmpleadosPage />} />
+            <Route path="/org" element={<OrganizationPage />} />
           </Route>
         </Routes>
       </BrowserRouter>
