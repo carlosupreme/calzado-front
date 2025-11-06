@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useEmpleados } from '@/hooks/useDashboard';
 import type { PeriodParams } from '@/types/dashboard';
 import { EmployeeMetrics } from '@/components/dashboard/EmployeeMetrics';
+import { EmployeeRecognition } from '@/components/dashboard/EmployeeRecognition';
 import { TopPerformers } from '@/components/dashboard/TopPerformers';
 import { EmployeePerformanceChart } from '@/components/dashboard/EmployeePerformanceChart';
 import { EmployeeRankingTable } from '@/components/dashboard/EmployeeRankingTable';
@@ -24,7 +25,7 @@ export function EmpleadosPage() {
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-8">
       {/* Header */}
       <div>
         <h1 className="text-3xl font-bold tracking-tight">Gestión de Empleados</h1>
@@ -32,6 +33,9 @@ export function EmpleadosPage() {
           Panel de control para monitorear el desempeño del equipo de ventas
         </p>
       </div>
+
+      {/* Employee Recognition Section */}
+      <EmployeeRecognition />
 
       {/* KPI Metrics */}
       {isLoading ? (

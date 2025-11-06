@@ -34,6 +34,7 @@ interface Product {
 
 // Generate mock product data for a store
 function generateProductData(tienda: string): Product[] {
+  console.log(tienda);
   const categories = ['Dama', 'Caballero', 'Niño', 'Accesorios'];
   const products: Product[] = [];
 
