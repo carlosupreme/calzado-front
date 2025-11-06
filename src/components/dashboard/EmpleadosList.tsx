@@ -1,16 +1,14 @@
-import { useEmpleados } from '@/hooks/useDashboard';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
 import { Skeleton } from '@/components/ui/skeleton';
 import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
+    Table,
+    TableBody,
+    TableCell,
+    TableHead,
+    TableHeader,
+    TableRow,
 } from '@/components/ui/table';
-import { getStatusColor, formatNumber } from '@/lib/statusUtils';
+import { useEmpleados } from '@/hooks/useDashboard';
 import type { PeriodParams } from '@/types/dashboard';
 
 interface EmpleadosListProps {
@@ -83,20 +81,6 @@ export function EmpleadosList({ period }: EmpleadosListProps) {
                 <TableRow key={empleado.empleado} className="hover:bg-muted/50">
                   <TableCell className="font-medium">
                     {empleado.empleado}
-                  </TableCell>
-                  <TableCell className="text-right">
-                    {formatNumber(empleado.inventario)}
-                  </TableCell>
-                  <TableCell className="text-right">
-                    {formatNumber(empleado.ventas)}
-                  </TableCell>
-                  <TableCell className="text-right">
-                    {empleado.cobertura.toFixed(1)} días
-                  </TableCell>
-                  <TableCell>
-                    <Badge variant={getStatusColor(empleado.status) as 'default' | 'destructive' | 'outline' | 'secondary'}>
-                      {empleado.status}
-                    </Badge>
                   </TableCell>
                 </TableRow>
               ))}

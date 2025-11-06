@@ -11,6 +11,8 @@ import {
   Building2,
   Users,
   GitBranch,
+  Maximize,
+  Target,
 } from 'lucide-react';
 
 interface Diagram {
@@ -58,6 +60,10 @@ export function OrganizationPage() {
 
   const handleResetZoom = () => {
     setZoom(100);
+  };
+
+  const handleFitToScreen = () => {
+    setZoom(70);
   };
 
   const getCategoryIcon = (category: string) => {
@@ -175,8 +181,126 @@ export function OrganizationPage() {
           </Card>
         </div>
 
-        {/* Main Content - Diagram Viewer */}
+        {/* Main Content - Organizational Info */}
         <div className="space-y-4">
+          {/* Mission, Vision, Values */}
+          <div className="grid gap-4 md:grid-cols-3">
+            {/* Mission */}
+            <Card className="border-l-4 border-l-blue-500">
+              <CardHeader>
+                <div className="flex items-center gap-2 mb-2">
+                  <div className="rounded-full bg-blue-100 dark:bg-blue-900/20 p-2">
+                    <Target className="h-4 w-4 text-blue-600 dark:text-blue-400" />
+                  </div>
+                  <CardTitle className="text-base">Misión</CardTitle>
+                </div>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  Ofrecer a las familias mexicanas acceso a calzado de calidad a precios competitivos,
+                  brindando una experiencia de compra excepcional y contribuyendo al bienestar de
+                  nuestras comunidades a través de más de 15 tiendas en todo el país.
+                </p>
+              </CardContent>
+            </Card>
+
+            {/* Vision */}
+            <Card className="border-l-4 border-l-purple-500">
+              <CardHeader>
+                <div className="flex items-center gap-2 mb-2">
+                  <div className="rounded-full bg-purple-100 dark:bg-purple-900/20 p-2">
+                    <Building2 className="h-4 w-4 text-purple-600 dark:text-purple-400" />
+                  </div>
+                  <CardTitle className="text-base">Visión</CardTitle>
+                </div>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  Ser la cadena de zapaterías líder en México, reconocida por nuestra excelencia operativa,
+                  innovación en procesos y compromiso con la satisfacción del cliente, expandiendo nuestra
+                  presencia nacional con una estructura organizacional sólida y eficiente.
+                </p>
+              </CardContent>
+            </Card>
+
+            {/* Values */}
+            <Card className="border-l-4 border-l-green-500">
+              <CardHeader>
+                <div className="flex items-center gap-2 mb-2">
+                  <div className="rounded-full bg-green-100 dark:bg-green-900/20 p-2">
+                    <Users className="h-4 w-4 text-green-600 dark:text-green-400" />
+                  </div>
+                  <CardTitle className="text-base">Valores</CardTitle>
+                </div>
+              </CardHeader>
+              <CardContent>
+                <ul className="text-sm text-muted-foreground space-y-2">
+                  <li className="flex items-start gap-2">
+                    <span className="text-green-600 mt-0.5">•</span>
+                    <span><strong>Calidad:</strong> Compromiso con productos de alto estándar</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-green-600 mt-0.5">•</span>
+                    <span><strong>Accesibilidad:</strong> Precios justos para todas las familias</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-green-600 mt-0.5">•</span>
+                    <span><strong>Servicio:</strong> Atención al cliente excepcional</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-green-600 mt-0.5">•</span>
+                    <span><strong>Integridad:</strong> Honestidad en todas nuestras operaciones</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-green-600 mt-0.5">•</span>
+                    <span><strong>Innovación:</strong> Mejora continua de procesos</span>
+                  </li>
+                </ul>
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* Company Overview */}
+          <Card>
+            <CardHeader>
+              <CardTitle>Acerca de Calzando a México</CardTitle>
+              <CardDescription>35 años transformando la industria del calzado</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-4">
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  <strong className="text-foreground">Calzando a México</strong> es una de las cadenas de zapaterías
+                  más grandes del país, con más de 15 tiendas a nivel nacional. Fundada hace 35 años, la empresa
+                  experimentó un crecimiento acelerado gracias a su modelo de negocio de ofrecer una amplia variedad
+                  de calzado a precios competitivos.
+                </p>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  Sin embargo, este rápido crecimiento no fue acompañado por una evolución de sus procesos internos
+                  ni de su estructura organizacional. Hoy nos encontramos en un proceso de transformación y modernización
+                  para consolidar nuestra operación y prepararnos para el futuro.
+                </p>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 pt-4 border-t">
+                  <div className="text-center">
+                    <p className="text-2xl font-bold text-primary">35+</p>
+                    <p className="text-xs text-muted-foreground">Años de experiencia</p>
+                  </div>
+                  <div className="text-center">
+                    <p className="text-2xl font-bold text-primary">15+</p>
+                    <p className="text-xs text-muted-foreground">Tiendas nacionales</p>
+                  </div>
+                  <div className="text-center">
+                    <p className="text-2xl font-bold text-primary">500+</p>
+                    <p className="text-xs text-muted-foreground">Colaboradores</p>
+                  </div>
+                  <div className="text-center">
+                    <p className="text-2xl font-bold text-primary">1M+</p>
+                    <p className="text-xs text-muted-foreground">Clientes atendidos</p>
+                  </div>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
           {/* Diagram Info Card */}
           <Card>
             <CardHeader>
@@ -205,6 +329,17 @@ export function OrganizationPage() {
               <div className="flex items-center justify-between">
                 <CardTitle className="text-base">Vista de Diagrama</CardTitle>
                 <div className="flex items-center gap-2">
+                  {/* Fit to Screen */}
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={handleFitToScreen}
+                    className="hidden sm:flex"
+                  >
+                    <Maximize className="h-4 w-4 mr-1" />
+                    <span className="text-xs">Ajustar</span>
+                  </Button>
+
                   {/* Zoom Controls */}
                   <div className="flex items-center gap-1 border rounded-lg p-1">
                     <Button
@@ -213,6 +348,7 @@ export function OrganizationPage() {
                       onClick={handleZoomOut}
                       disabled={zoom <= 50}
                       className="h-8 w-8 p-0"
+                      title="Reducir zoom"
                     >
                       <ZoomOut className="h-4 w-4" />
                     </Button>
@@ -221,6 +357,7 @@ export function OrganizationPage() {
                       size="sm"
                       onClick={handleResetZoom}
                       className="h-8 px-3 text-xs font-medium"
+                      title="Restablecer zoom"
                     >
                       {zoom}%
                     </Button>
@@ -230,6 +367,7 @@ export function OrganizationPage() {
                       onClick={handleZoomIn}
                       disabled={zoom >= 200}
                       className="h-8 w-8 p-0"
+                      title="Aumentar zoom"
                     >
                       <ZoomIn className="h-4 w-4" />
                     </Button>
@@ -240,6 +378,7 @@ export function OrganizationPage() {
                     variant="outline"
                     size="sm"
                     onClick={() => setIsFullscreen(!isFullscreen)}
+                    title={isFullscreen ? 'Salir de pantalla completa' : 'Pantalla completa'}
                   >
                     {isFullscreen ? (
                       <Minimize2 className="h-4 w-4" />
@@ -253,56 +392,40 @@ export function OrganizationPage() {
                     variant="outline"
                     size="sm"
                     onClick={() => handleDownload(selectedDiagram)}
+                    title="Descargar diagrama"
                   >
                     <Download className="h-4 w-4" />
                   </Button>
                 </div>
               </div>
             </CardHeader>
-            <CardContent className={`${isFullscreen ? 'flex-1 overflow-auto' : ''} p-0`}>
-              <div className={`${isFullscreen ? 'min-h-full' : 'h-[600px]'} bg-muted/30 overflow-auto flex items-center justify-center p-4`}>
-                <div
-                  className="transition-transform duration-200 ease-in-out"
-                  style={{
-                    transform: `scale(${zoom / 100})`,
-                    transformOrigin: 'center center',
-                  }}
-                >
-                  <img
-                    src={selectedDiagram.imagePath}
-                    alt={selectedDiagram.title}
-                    className="max-w-full h-auto rounded-lg shadow-lg bg-white"
-                    draggable={false}
-                  />
+            <CardContent className={`${isFullscreen ? 'flex-1' : ''} p-0`}>
+              <div
+                className={`${isFullscreen ? 'h-[calc(100vh-12rem)]' : 'h-[70vh] min-h-[500px]'} bg-muted/30 overflow-auto`}
+              >
+                <div className="w-full h-full flex items-start justify-center p-6">
+                  <div
+                    className="transition-transform duration-200 ease-in-out"
+                    style={{
+                      transform: `scale(${zoom / 100})`,
+                      transformOrigin: 'top center',
+                    }}
+                  >
+                    <img
+                      src={selectedDiagram.imagePath}
+                      alt={selectedDiagram.title}
+                      className="rounded-lg shadow-2xl bg-white border"
+                      draggable={false}
+                      style={{
+                        maxWidth: '1400px',
+                        width: '100%',
+                        height: 'auto',
+                        objectFit: 'contain',
+                      }}
+                    />
+                  </div>
                 </div>
               </div>
-            </CardContent>
-          </Card>
-
-          {/* Tips Card */}
-          <Card>
-            <CardHeader>
-              <CardTitle className="text-base">Consejos de Visualización</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <ul className="text-sm text-muted-foreground space-y-2">
-                <li className="flex items-start gap-2">
-                  <span className="text-primary mt-0.5">•</span>
-                  <span>Usa los controles de zoom para ajustar el tamaño del diagrama</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-primary mt-0.5">•</span>
-                  <span>Activa el modo de pantalla completa para una mejor visualización</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-primary mt-0.5">•</span>
-                  <span>Descarga el diagrama para uso offline o presentaciones</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-primary mt-0.5">•</span>
-                  <span>El scroll permite navegar por diagramas más grandes que la pantalla</span>
-                </li>
-              </ul>
             </CardContent>
           </Card>
         </div>
