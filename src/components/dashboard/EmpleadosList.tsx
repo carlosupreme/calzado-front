@@ -82,7 +82,7 @@ export function EmpleadosList({ period }: EmpleadosListProps) {
                   <TableCell className="font-medium">
                     {empleado.empleado}
                   </TableCell>
-                </TableRow>
+                </TableRow> 
               ))}
             </TableBody>
           </Table>

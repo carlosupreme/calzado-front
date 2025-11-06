@@ -1,7 +1,10 @@
 import { BusinessUnitFilter } from '@/components/dashboard/BusinessUnitFilter';
+import { EmployeeRequestPanel } from '@/components/dashboard/EmployeeRequestPanel';
 import { ExecutiveInsights } from '@/components/dashboard/ExecutiveInsights';
+import { ProductRestockAnalysis } from '@/components/dashboard/ProductRestockAnalysis';
 import { TiendaDetail } from '@/components/dashboard/TiendaDetail';
 import { UnitComparison } from '@/components/dashboard/UnitComparison';
+import { UnitHistoricalChart } from '@/components/dashboard/UnitHistoricalChart';
 import { YearOverYearComparison } from '@/components/dashboard/YearOverYearComparison';
 import { YearSelector } from '@/components/dashboard/YearSelector';
 import { Card, CardContent } from '@/components/ui/card';
@@ -106,6 +109,12 @@ export function TiendaDetailPage() {
         cobertura={tiendaData.cobertura}
       />
 
+      {/* Product Restocking & Best Sellers Analysis */}
+      <ProductRestockAnalysis tienda={decodedTienda} />
+
+      {/* Employee Communication Center */}
+      <EmployeeRequestPanel tienda={decodedTienda} />
+
       {/* Business Unit Analysis Section */}
       <div className="space-y-6">
         <div>
@@ -150,6 +159,13 @@ export function TiendaDetailPage() {
             selectedUnits={selectedUnits}
           />
         )}
+
+        {/* Historical Charts by Unit */}
+        <UnitHistoricalChart
+          tienda={decodedTienda}
+          selectedUnits={selectedUnits}
+          years={selectedYears}
+        />
 
         {/* Year over Year Comparison */}
         {selectedYears.length >= 2 && selectedUnits.length > 0 && (
